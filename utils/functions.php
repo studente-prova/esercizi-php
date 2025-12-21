@@ -149,12 +149,8 @@ function esegui_query_sicura($conn, $query, $types, $params) {
         die("Si è verificato un errore nel recupero dei dati.");
     }
     
-    // Bind dei parametri usando riferimenti
-    $bind_params = array($types);
-    for ($i = 0; $i < count($params); $i++) {
-        $bind_params[] = &$params[$i];
-    }
-    call_user_func_array(array($stmt, 'bind_param'), $bind_params);
+    // Bind dei parametri usando splat operator (PHP 5.6+)
+    mysqli_stmt_bind_param($stmt, $types, ...$params);
     
     // Esegui query
     mysqli_stmt_execute($stmt);
@@ -173,12 +169,20 @@ function esegui_query_sicura($conn, $query, $types, $params) {
 }
 
 /**
- * Redirect a un'altra pagina
+ * Redirect a un'altra pagina in modo sicuro
  * 
- * @param string $url URL di destinazione
+ * ⚠️ IMPORTANTE: Accetta solo URL relativi per prevenire open redirect
+ * 
+ * @param string $url URL relativo di destinazione (es. 'index.php', '../lista.php')
  * @return void
  */
 function redirect($url) {
+    // Valida che l'URL sia relativo (non inizia con http:// o https:// o //)
+    if (preg_match('#^(https?:)?//#i', $url)) {
+        error_log("Tentativo di redirect a URL esterno bloccato: $url");
+        die("Redirect non valido.");
+    }
+    
     header("Location: $url");
     exit();
 }
