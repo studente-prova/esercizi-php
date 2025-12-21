@@ -45,6 +45,9 @@ CREATE DATABASE esercizi_php CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 cp config/db_config.template.php config/db_config_local.php
 ```
 
+**Nota**: Gli esercizi usano `config/db_config.php` che carica automaticamente 
+`db_config_local.php` se esiste, altrimenti usa il template per scopi didattici.
+
 3. Modifica `config/db_config_local.php` con le tue credenziali:
 ```php
 <?php

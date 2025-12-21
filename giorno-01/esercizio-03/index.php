@@ -125,7 +125,7 @@
         
         <?php
         // Includi file di configurazione
-        require_once '../../config/db_config.template.php';
+        require_once '../../config/db_config.php';
         require_once '../../utils/functions.php';
         
         // Variabili

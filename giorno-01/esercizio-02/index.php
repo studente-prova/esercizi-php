@@ -113,7 +113,7 @@
         
         <?php
         // Includi file di configurazione
-        require_once '../../config/db_config.template.php';
+        require_once '../../config/db_config.php';
         
         // Connetti al database
         $conn = connetti_database();
