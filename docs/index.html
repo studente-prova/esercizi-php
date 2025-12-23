@@ -269,10 +269,28 @@
                 </div>
                 
                 <div class="step">
-                    <h4>Passo 2: Copia il Progetto</h4>
-                    <p>Copia la cartella del progetto in:</p>
-                    <pre>C:\xampp\htdocs\esercizi-php\</pre>
-                    <p><strong>Oppure</strong> clona con Git:</p>
+                    <h4>Passo 2: Scarica il Progetto</h4>
+                    <p>Scegli uno dei seguenti metodi:</p>
+                    
+                    <h5 style="color: #667eea; margin: 15px 0 10px 0;">📦 Metodo 1: Download ZIP (Più Semplice)</h5>
+                    <ol>
+                        <li>Vai su <a href="https://github.com/studente-prova/esercizi-php" target="_blank">github.com/studente-prova/esercizi-php</a></li>
+                        <li>Clicca sul pulsante verde <strong>Code</strong></li>
+                        <li>Clicca su <strong>Download ZIP</strong></li>
+                        <li>Estrai la cartella ZIP in <code>C:\xampp\htdocs\</code></li>
+                        <li>Rinomina la cartella in <code>esercizi-php</code> (rimuovi il suffisso -main)</li>
+                    </ol>
+                    
+                    <h5 style="color: #667eea; margin: 15px 0 10px 0;">🔧 Metodo 2: Git in VSCode</h5>
+                    <ol>
+                        <li>Apri VSCode</li>
+                        <li>Premi <code>Ctrl+Shift+P</code> e cerca <code>Git: Clone</code></li>
+                        <li>Inserisci l'URL: <code>https://github.com/studente-prova/esercizi-php.git</code></li>
+                        <li>Scegli come destinazione: <code>C:\xampp\htdocs\</code></li>
+                        <li>Attendi il completamento del clone</li>
+                    </ol>
+                    
+                    <h5 style="color: #667eea; margin: 15px 0 10px 0;">💻 Metodo 3: Git da Terminale</h5>
                     <pre>cd C:\xampp\htdocs
 git clone https://github.com/studente-prova/esercizi-php.git</pre>
                 </div>
@@ -353,7 +371,28 @@ define('DB_NAME', 'esercizi_php');</pre>
                 </div>
                 
                 <div class="step">
-                    <h4>Passo 2: Configura Database</h4>
+                    <h4>Passo 2: Scarica il Progetto Localmente</h4>
+                    <p>Prima di caricare su Altervista, devi avere i file sul tuo computer. Scegli un metodo:</p>
+                    
+                    <h5 style="color: #667eea; margin: 15px 0 10px 0;">📦 Metodo 1: Download ZIP</h5>
+                    <ol>
+                        <li>Vai su <a href="https://github.com/studente-prova/esercizi-php" target="_blank">github.com/studente-prova/esercizi-php</a></li>
+                        <li>Clicca sul pulsante verde <strong>Code</strong> → <strong>Download ZIP</strong></li>
+                        <li>Estrai il file ZIP in una cartella sul tuo computer</li>
+                        <li>Rinomina la cartella in <code>esercizi-php</code></li>
+                    </ol>
+                    
+                    <h5 style="color: #667eea; margin: 15px 0 10px 0;">🔧 Metodo 2: Git Clone in VSCode</h5>
+                    <ol>
+                        <li>Apri VSCode</li>
+                        <li>Premi <code>Ctrl+Shift+P</code> → <code>Git: Clone</code></li>
+                        <li>Inserisci: <code>https://github.com/studente-prova/esercizi-php.git</code></li>
+                        <li>Scegli una cartella sul tuo computer</li>
+                    </ol>
+                </div>
+                
+                <div class="step">
+                    <h4>Passo 3: Configura Database</h4>
                     <ol>
                         <li>Accedi al pannello di controllo Altervista</li>
                         <li>Vai su <strong>Database MySQL</strong></li>
@@ -372,7 +411,7 @@ define('DB_NAME', 'esercizi_php');</pre>
                 </div>
                 
                 <div class="step">
-                    <h4>Passo 3: Configura FTP in VSCode</h4>
+                    <h4>Passo 4: Configura FTP in VSCode</h4>
                     <ol>
                         <li>Installa l'estensione <strong>FTP-Simple</strong> in VSCode</li>
                         <li>Premi <code>Ctrl+Shift+P</code> e cerca <code>FTP-Simple: Config</code></li>
@@ -390,7 +429,7 @@ define('DB_NAME', 'esercizi_php');</pre>
                 </div>
                 
                 <div class="step">
-                    <h4>Passo 4: Modifica db_config.php</h4>
+                    <h4>Passo 5: Modifica db_config.php</h4>
                     <p><strong>PRIMA di caricare i file</strong>, modifica <code>config/db_config.php</code>:</p>
                     <pre>define('DB_HOST', 'localhost');
 define('DB_USER', 'tuousername');        // ← Il tuo username
@@ -402,7 +441,7 @@ define('DB_NAME', 'my_tuousername');     // ← my_ + username</pre>
                 </div>
                 
                 <div class="step">
-                    <h4>Passo 5: Carica i File</h4>
+                    <h4>Passo 6: Carica i File</h4>
                     <ol>
                         <li>In VSCode, fai clic destro sulla cartella del progetto</li>
                         <li>Seleziona <strong>Upload Folder</strong></li>
@@ -411,7 +450,7 @@ define('DB_NAME', 'my_tuousername');     // ← my_ + username</pre>
                 </div>
                 
                 <div class="step">
-                    <h4>Passo 6: Testa Online</h4>
+                    <h4>Passo 7: Testa Online</h4>
                     <p>Apri nel browser:</p>
                     <pre>http://tuousername.altervista.org/esercizi-php/giorno-01/esercizio-01/</pre>
                     <div class="alert alert-success">
