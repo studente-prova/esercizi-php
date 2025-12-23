@@ -181,7 +181,6 @@
         }
         
         ul, ol {
-            margin-left: 25px;
             margin: 15px 0 15px 25px;
         }
         
@@ -632,7 +631,7 @@ ini_set('display_errors', 1);
     </div>
     
     <script>
-        function openTab(tabName) {
+        function openTab(tabName, event) {
             // Nascondi tutti i tab content
             var tabContents = document.getElementsByClassName('tab-content');
             for (var i = 0; i < tabContents.length; i++) {
