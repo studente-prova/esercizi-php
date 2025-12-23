@@ -1,0 +1,23 @@
+# PHP
+*.log
+*.php~
+*.swp
+*~
+
+# Database
+*.sql~
+db_config_local.php
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+/tmp/
+*.tmp
