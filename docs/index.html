@@ -364,9 +364,17 @@ define('DB_NAME', 'esercizi_php');</pre>
                     <h4>Passo 1: Crea Account</h4>
                     <ol>
                         <li>Vai su <a href="https://it.altervista.org/" target="_blank">altervista.org</a></li>
-                        <li>Crea un account gratuito</li>
+                        <li>Clicca su <strong>Crea sito</strong></li>
+                        <li><strong>IMPORTANTE</strong>: Quando scegli il piano, seleziona <strong>"Hosting con File Manager"</strong></li>
+                        <li>Scegli un dominio di terzo livello (esempio: <code>miosito.altervista.org</code>)</li>
                         <li>Prendi nota del tuo username (esempio: <code>miosito</code>)</li>
                     </ol>
+                    
+                    <div class="alert alert-warning" style="margin-top: 15px;">
+                        <strong>💰 Non preoccuparti del prezzo!</strong><br>
+                        Se scegli un dominio di terzo livello (nomesito.altervista.org), il servizio è completamente <strong>GRATUITO</strong>. 
+                        Anche se durante la registrazione potrebbero comparire piani a pagamento, accontentandoti del dominio di terzo livello non paghi nulla! ✅
+                    </div>
                 </div>
                 
                 <div class="step">
@@ -466,6 +474,52 @@ define('DB_NAME', 'my_tuousername');     // ← my_ + username</pre>
                         <li>Oppure abilita <code>uploadOnSave: true</code> per upload automatico</li>
                         <li>Ricarica il browser per vedere le modifiche</li>
                     </ol>
+                </div>
+                
+                <h3>💡 Pro Tip: Gestire Più Progetti con un Solo Database</h3>
+                <div class="card">
+                    <p><strong>Problema:</strong> Altervista offre un solo database gratuito, ma potresti voler sviluppare più progetti.</p>
+                    
+                    <p><strong>Soluzione:</strong> Usa i <strong>prefissi delle tabelle</strong> per partizionare logicamente il database!</p>
+                    
+                    <h4 style="color: #667eea; margin-top: 15px;">Strategia di Partizionamento</h4>
+                    
+                    <p><strong>1. Per ogni progetto, usa un prefisso diverso:</strong></p>
+                    <pre>-- Progetto Esercizi PHP
+esercizi_studenti
+esercizi_corsi
+esercizi_voti
+
+-- Progetto Blog
+blog_posts
+blog_comments
+blog_users
+
+-- Progetto E-commerce
+shop_products
+shop_orders
+shop_customers</pre>
+                    
+                    <p><strong>2. Nel codice, definisci il prefisso come costante:</strong></p>
+                    <pre>// In config/db_config.php
+define('DB_PREFIX', 'esercizi_');
+
+// Quando crei query
+$table = DB_PREFIX . 'studenti';  // Risultato: esercizi_studenti
+$query = "SELECT * FROM $table";</pre>
+                    
+                    <p><strong>3. Vantaggi di questo approccio:</strong></p>
+                    <ul style="margin-top: 10px;">
+                        <li>✅ Un solo database Altervista per più progetti</li>
+                        <li>✅ Facile identificare le tabelle di ogni progetto</li>
+                        <li>✅ Nessun conflitto tra progetti diversi</li>
+                        <li>✅ Puoi fare backup selettivi per progetto</li>
+                        <li>✅ Cambi progetto solo modificando DB_PREFIX</li>
+                    </ul>
+                    
+                    <div class="alert alert-info" style="margin-top: 15px;">
+                        <strong>💡 Suggerimento:</strong> Mantieni una lista dei prefissi usati in un file di testo per non dimenticarli!
+                    </div>
                 </div>
             </div>
             
