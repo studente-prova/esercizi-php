@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esercizi PHP - Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            max-width: 600px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            color: #666;
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .emoji {
+            font-size: 1.3em;
+            margin-right: 8px;
+        }
+        
+        .status {
+            margin-top: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .status h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .status ul {
+            list-style: none;
+            text-align: left;
+        }
+        
+        .status li {
+            padding: 8px 0;
+            color: #666;
+        }
+        
+        .status li::before {
+            content: "📁 ";
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Esercizi PHP/MySQLi</h1>
+        <p>Benvenuto! Questa è la home del repository di esercizi PHP con MySQLi procedurale.</p>
+        
+        <div class="buttons">
+            <a href="docs/index.html" class="btn btn-primary">
+                <span class="emoji">📖</span>
+                Guida Setup
+            </a>
+            <a href="giorno-01/esercizio-01/" class="btn btn-secondary">
+                <span class="emoji">▶️</span>
+                Test Connessione
+            </a>
+        </div>
+        
+        <div class="status">
+            <h3>📚 Esercizi Disponibili</h3>
+            <ul>
+                <li><a href="giorno-01/">Giorno 1</a> - Fondamenti PHP e MySQLi</li>
+                <li><a href="giorno-02/">Giorno 2</a> - CRUD Operations</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
