@@ -46,9 +46,9 @@
             <a href="../" class="btn btn-secondary">← Torna al Giorno 2</a>
         </div>
         
-        <div style="margin-top: 40px; text-align: center; padding: 20px; background: #f8f9fa; border-radius: 8px;">
-            <p style="color: #666; margin-bottom: 10px;">💡 <strong>Suggerimento:</strong></p>
-            <p style="color: #555; line-height: 1.6;">
+        <div class="hint-box">
+            <p>💡 <strong>Suggerimento:</strong></p>
+            <p>
                 Puoi prendere spunto dagli esercizi del Giorno 1 per la struttura del codice.<br>
                 Ricordati di usare <code>require_once '../../config/db_config.php';</code> per la connessione al database.
             </p>

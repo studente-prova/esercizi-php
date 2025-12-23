@@ -417,3 +417,22 @@ h1 {
 .how-to-proceed li span {
     margin-right: 8px;
 }
+
+/* Hint box for placeholders */
+.hint-box {
+    margin-top: 40px;
+    text-align: center;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.hint-box p {
+    color: #555;
+    line-height: 1.6;
+}
+
+.hint-box p:first-child {
+    color: #666;
+    margin-bottom: 10px;
+}

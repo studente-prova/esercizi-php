@@ -59,9 +59,9 @@
             <a href="../" class="btn btn-secondary">← Torna al Giorno 2</a>
         </div>
         
-        <div style="margin-top: 40px; text-align: center; padding: 20px; background: #f8f9fa; border-radius: 8px;">
-            <p style="color: #666; margin-bottom: 10px;">💡 <strong>Suggerimenti:</strong></p>
-            <p style="color: #555; line-height: 1.6;">
+        <div class="hint-box">
+            <p>💡 <strong>Suggerimenti:</strong></p>
+            <p>
                 • Usa <code>$_GET['id']</code> per ricevere l'ID dello studente<br>
                 • Valida sempre che l'ID sia numerico con <code>is_numeric()</code><br>
                 • Per eliminazione, usa: <code>onclick="return confirm('Sei sicuro?')"</code><br>
