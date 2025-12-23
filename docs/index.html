@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esercizi PHP - Guida Setup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+            flex-wrap: wrap;
+        }
+        
+        .tab-button {
+            background: none;
+            border: none;
+            padding: 15px 25px;
+            font-size: 16px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .tab-button:hover {
+            background: #f5f5f5;
+            color: #667eea;
+        }
+        
+        .tab-button.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h2 {
+            color: #667eea;
+            margin: 30px 0 15px 0;
+            font-size: 1.8em;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: #764ba2;
+            margin: 20px 0 10px 0;
+            font-size: 1.3em;
+        }
+        
+        .step {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .step h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        code {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        .alert-info {
+            background: #d1ecf1;
+            border-left: 4px solid #0c5460;
+            color: #0c5460;
+        }
+        
+        .alert-warning {
+            background: #fff3cd;
+            border-left: 4px solid #856404;
+            color: #856404;
+        }
+        
+        .alert-success {
+            background: #d4edda;
+            border-left: 4px solid #155724;
+            color: #155724;
+        }
+        
+        .card {
+            background: white;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            transition: all 0.3s;
+        }
+        
+        .card:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+        }
+        
+        ul, ol {
+            margin: 15px 0 15px 25px;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        a {
+            color: #667eea;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        a:hover {
+            border-bottom-color: #667eea;
+        }
+        
+        .emoji {
+            font-size: 1.2em;
+        }
+        
+        footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            border-top: 2px solid #eee;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab-button {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Esercizi PHP/MySQLi</h1>
+            <p>Guida Setup e Configurazione</p>
+        </header>
+        
+        <div class="content">
+            <div class="tabs">
+                <button class="tab-button active" onclick="openTab('xampp')">
+                    <span class="emoji">💻</span> XAMPP Windows
+                </button>
+                <button class="tab-button" onclick="openTab('altervista')">
+                    <span class="emoji">🌐</span> Altervista
+                </button>
+                <button class="tab-button" onclick="openTab('config')">
+                    <span class="emoji">⚙️</span> Configurazione
+                </button>
+                <button class="tab-button" onclick="openTab('troubleshooting')">
+                    <span class="emoji">🔧</span> Problemi Comuni
+                </button>
+            </div>
+            
+            <!-- XAMPP Tab -->
+            <div id="xampp" class="tab-content active">
+                <h2>Setup con XAMPP su Windows</h2>
+                
+                <div class="alert alert-info">
+                    <strong>📍 Per laboratorio e casa con Windows</strong><br>
+                    Questa è la configurazione standard per lo sviluppo locale.
+                </div>
+                
+                <div class="step">
+                    <h4>Passo 1: Installa XAMPP</h4>
+                    <ol>
+                        <li>Scarica XAMPP da <a href="https://www.apachefriends.org/it/index.html" target="_blank">apachefriends.org</a></li>
+                        <li>Installa in <code>C:\xampp</code></li>
+                        <li>Seleziona: Apache, MySQL, PHP, phpMyAdmin</li>
+                    </ol>
+                </div>
+                
+                <div class="step">
+                    <h4>Passo 2: Scarica il Progetto</h4>
+                    <p>Scegli uno dei seguenti metodi:</p>
+                    
+                    <h5 style="color: #667eea; margin: 15px 0 10px 0;">📦 Metodo 1: Download ZIP (Più Semplice)</h5>
+                    <ol>
+                        <li>Vai su <a href="https://github.com/studente-prova/esercizi-php" target="_blank">github.com/studente-prova/esercizi-php</a></li>
+                        <li>Clicca sul pulsante verde <strong>Code</strong></li>
+                        <li>Clicca su <strong>Download ZIP</strong></li>
+                        <li>Estrai la cartella ZIP in <code>C:\xampp\htdocs\</code></li>
+                        <li>Rinomina la cartella in <code>esercizi-php</code> (rimuovi il suffisso -main)</li>
+                    </ol>
+                    
+                    <h5 style="color: #667eea; margin: 15px 0 10px 0;">🔧 Metodo 2: Git in VSCode</h5>
+                    <ol>
+                        <li>Apri VSCode</li>
+                        <li>Premi <code>Ctrl+Shift+P</code> e cerca <code>Git: Clone</code></li>
+                        <li>Inserisci l'URL: <code>https://github.com/studente-prova/esercizi-php.git</code></li>
+                        <li>Scegli come destinazione: <code>C:\xampp\htdocs\</code></li>
+                        <li>Attendi il completamento del clone</li>
+                    </ol>
+                    
+                    <h5 style="color: #667eea; margin: 15px 0 10px 0;">💻 Metodo 3: Git da Terminale</h5>
+                    <pre>cd C:\xampp\htdocs
+git clone https://github.com/studente-prova/esercizi-php.git</pre>
+                </div>
+                
+                <div class="step">
+                    <h4>Passo 3: Avvia XAMPP</h4>
+                    <ol>
+                        <li>Apri <strong>XAMPP Control Panel</strong></li>
+                        <li>Clicca <strong>Start</strong> su Apache</li>
+                        <li>Clicca <strong>Start</strong> su MySQL</li>
+                        <li>I moduli dovrebbero diventare verdi ✅</li>
+                    </ol>
+                </div>
+                
+                <div class="step">
+                    <h4>Passo 4: Crea il Database</h4>
+                    <ol>
+                        <li>Apri il browser e vai su: <code>http://localhost/phpmyadmin</code></li>
+                        <li>Clicca su <strong>Nuovo</strong></li>
+                        <li>Nome database: <code>esercizi_php</code></li>
+                        <li>Codifica: <code>utf8mb4_unicode_ci</code></li>
+                        <li>Clicca <strong>Crea</strong></li>
+                        <li>Vai sulla tab <strong>Importa</strong></li>
+                        <li>Seleziona il file: <code>C:\xampp\htdocs\esercizi-php\database\schema.sql</code></li>
+                        <li>Clicca <strong>Esegui</strong></li>
+                    </ol>
+                </div>
+                
+                <div class="step">
+                    <h4>Passo 5: Configura db_config.php</h4>
+                    <p>Apri il file <code>config/db_config.php</code> e modifica:</p>
+                    <pre>define('DB_HOST', 'localhost');
+define('DB_USER', 'root');              // ← Per XAMPP
+define('DB_PASS', '');                  // ← Vuoto per XAMPP
+define('DB_NAME', 'esercizi_php');</pre>
+                    <div class="alert alert-warning">
+                        <strong>⚠️ IMPORTANTE:</strong> Su XAMPP la password è vuota per default!
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <h4>Passo 6: Testa la Configurazione</h4>
+                    <p>Apri nel browser:</p>
+                    <pre>http://localhost/esercizi-php/giorno-01/esercizio-01/</pre>
+                    <div class="alert alert-success">
+                        Se vedi "✅ Connessione al database riuscita!", tutto funziona! 🎉
+                    </div>
+                </div>
+                
+                <h3>Workflow Giornaliero</h3>
+                <div class="card">
+                    <ol>
+                        <li>Avvia XAMPP Control Panel</li>
+                        <li>Start Apache e MySQL</li>
+                        <li>Apri VSCode sulla cartella <code>C:\xampp\htdocs\esercizi-php</code></li>
+                        <li>Modifica i file PHP</li>
+                        <li>Salva e ricarica il browser</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <!-- Altervista Tab -->
+            <div id="altervista" class="tab-content">
+                <h2>Setup su Altervista</h2>
+                
+                <div class="alert alert-info">
+                    <strong>🌐 Per sviluppo/test online</strong><br>
+                    Carica i file con FTP e configura il database.
+                </div>
+                
+                <div class="step">
+                    <h4>Passo 1: Crea Account</h4>
+                    <ol>
+                        <li>Vai su <a href="https://it.altervista.org/" target="_blank">altervista.org</a></li>
+                        <li>Clicca su <strong>Crea sito</strong></li>
+                        <li><strong>IMPORTANTE</strong>: Quando scegli il piano, seleziona <strong>"Hosting con File Manager"</strong></li>
+                        <li>Scegli un dominio di terzo livello (esempio: <code>miosito.altervista.org</code>)</li>
+                        <li>Prendi nota del tuo username (esempio: <code>miosito</code>)</li>
+                    </ol>
+                    
+                    <div class="alert alert-warning" style="margin-top: 15px;">
+                        <strong>💰 Non preoccuparti del prezzo!</strong><br>
+                        Se scegli un dominio di terzo livello (miosito.altervista.org), il servizio è completamente <strong>GRATUITO</strong>. 
+                        Anche se durante la registrazione potrebbero comparire piani a pagamento, accontentandoti del dominio di terzo livello non paghi nulla! ✅
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <h4>Passo 2: Scarica il Progetto Localmente</h4>
+                    <p>Prima di caricare su Altervista, devi avere i file sul tuo computer. Scegli un metodo:</p>
+                    
+                    <h5 style="color: #667eea; margin: 15px 0 10px 0;">📦 Metodo 1: Download ZIP</h5>
+                    <ol>
+                        <li>Vai su <a href="https://github.com/studente-prova/esercizi-php" target="_blank">github.com/studente-prova/esercizi-php</a></li>
+                        <li>Clicca sul pulsante verde <strong>Code</strong> → <strong>Download ZIP</strong></li>
+                        <li>Estrai il file ZIP in una cartella sul tuo computer</li>
+                        <li>Rinomina la cartella in <code>esercizi-php</code></li>
+                    </ol>
+                    
+                    <h5 style="color: #667eea; margin: 15px 0 10px 0;">🔧 Metodo 2: Git Clone in VSCode</h5>
+                    <ol>
+                        <li>Apri VSCode</li>
+                        <li>Premi <code>Ctrl+Shift+P</code> → <code>Git: Clone</code></li>
+                        <li>Inserisci: <code>https://github.com/studente-prova/esercizi-php.git</code></li>
+                        <li>Scegli una cartella sul tuo computer</li>
+                    </ol>
+                </div>
+                
+                <div class="step">
+                    <h4>Passo 3: Configura Database</h4>
+                    <ol>
+                        <li>Accedi al pannello di controllo Altervista</li>
+                        <li>Vai su <strong>Database MySQL</strong></li>
+                        <li>Clicca <strong>Attiva database</strong></li>
+                        <li>Prendi nota delle credenziali:
+                            <ul>
+                                <li>Host: <code>localhost</code></li>
+                                <li>Username: il tuo username</li>
+                                <li>Database: <code>my_tuousername</code></li>
+                                <li>Password: quella che hai impostato</li>
+                            </ul>
+                        </li>
+                        <li>Vai su <strong>phpMyAdmin</strong></li>
+                        <li>Importa <code>database/schema.sql</code></li>
+                    </ol>
+                </div>
+                
+                <div class="step">
+                    <h4>Passo 4: Configura FTP in VSCode</h4>
+                    <ol>
+                        <li>Installa l'estensione <strong>FTP-Simple</strong> in VSCode</li>
+                        <li>Premi <code>Ctrl+Shift+P</code> e cerca <code>FTP-Simple: Config</code></li>
+                        <li>Configura con i tuoi dati FTP:
+<pre>{
+    "host": "ftp.tuousername.altervista.org",
+    "port": 21,
+    "username": "tuousername",
+    "password": "tuapassword",
+    "remotePath": "/",
+    "uploadOnSave": false
+}</pre>
+                        </li>
+                    </ol>
+                </div>
+                
+                <div class="step">
+                    <h4>Passo 5: Modifica db_config.php</h4>
+                    <p><strong>PRIMA di caricare i file</strong>, modifica <code>config/db_config.php</code>:</p>
+                    <pre>define('DB_HOST', 'localhost');
+define('DB_USER', 'tuousername');        // ← Il tuo username
+define('DB_PASS', 'tuapassword');        // ← La tua password
+define('DB_NAME', 'my_tuousername');     // ← my_ + username</pre>
+                    <div class="alert alert-warning">
+                        <strong>⚠️ ATTENZIONE:</strong> Su Altervista il nome database è <code>my_tuousername</code>!
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <h4>Passo 6: Carica i File</h4>
+                    <ol>
+                        <li>In VSCode, fai clic destro sulla cartella del progetto</li>
+                        <li>Seleziona <strong>Upload Folder</strong></li>
+                        <li>Aspetta il completamento dell'upload</li>
+                    </ol>
+                </div>
+                
+                <div class="step">
+                    <h4>Passo 7: Testa Online</h4>
+                    <p>Apri nel browser:</p>
+                    <pre>http://tuousername.altervista.org/esercizi-php/giorno-01/esercizio-01/</pre>
+                    <div class="alert alert-success">
+                        Se vedi "✅ Connessione al database riuscita!", è tutto online! 🎉
+                    </div>
+                </div>
+                
+                <h3>Workflow con FTP</h3>
+                <div class="card">
+                    <ol>
+                        <li>Modifica i file localmente in VSCode</li>
+                        <li>Salva le modifiche</li>
+                        <li>Fai clic destro sul file → <strong>Upload</strong></li>
+                        <li>Oppure abilita <code>uploadOnSave: true</code> per upload automatico</li>
+                        <li>Ricarica il browser per vedere le modifiche</li>
+                    </ol>
+                </div>
+                
+                <h3>💡 Pro Tip: Gestire Più Progetti con un Solo Database</h3>
+                <div class="card">
+                    <p><strong>Problema:</strong> Altervista offre un solo database gratuito, ma potresti voler sviluppare più progetti.</p>
+                    
+                    <p><strong>Soluzione:</strong> Usa i <strong>prefissi delle tabelle</strong> per partizionare logicamente il database!</p>
+                    
+                    <h4 style="color: #667eea; margin-top: 15px;">Strategia di Partizionamento</h4>
+                    
+                    <p><strong>1. Per ogni progetto, usa un prefisso diverso per le tabelle:</strong></p>
+                    <pre>-- Progetto Esercizi PHP (tabelle con prefisso esercizi_)
+esercizi_studenti
+esercizi_corsi
+esercizi_voti
+
+-- Progetto Blog (tabelle con prefisso blog_)
+blog_posts
+blog_comments
+blog_users
+
+-- Progetto E-commerce (tabelle con prefisso shop_)
+shop_products
+shop_orders
+shop_customers</pre>
+                    
+                    <p><strong>2. Nel codice, definisci il prefisso come costante:</strong></p>
+                    <pre>// In config/db_config.php
+define('DB_PREFIX', 'esercizi_');
+
+// Quando crei query
+$table = DB_PREFIX . 'studenti';  // Risultato: esercizi_studenti
+$query = "SELECT * FROM $table";</pre>
+                    
+                    <p><strong>3. Vantaggi di questo approccio:</strong></p>
+                    <ul style="margin-top: 10px;">
+                        <li>✅ Un solo database Altervista per più progetti</li>
+                        <li>✅ Facile identificare le tabelle di ogni progetto</li>
+                        <li>✅ Nessun conflitto tra progetti diversi</li>
+                        <li>✅ Puoi fare backup selettivi per progetto</li>
+                        <li>✅ Cambi progetto solo modificando DB_PREFIX</li>
+                    </ul>
+                    
+                    <div class="alert alert-info" style="margin-top: 15px;">
+                        <strong>💡 Suggerimento:</strong> Mantieni una lista dei prefissi usati in un file di testo per non dimenticarli!
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Config Tab -->
+            <div id="config" class="tab-content">
+                <h2>Configurazione Database</h2>
+                
+                <div class="alert alert-info">
+                    <strong>📝 File unico di configurazione</strong><br>
+                    Tutto si configura modificando <code>config/db_config.php</code>
+                </div>
+                
+                <h3>Configurazioni per Ambiente</h3>
+                
+                <div class="card">
+                    <h4>🖥️ XAMPP Windows (Laboratorio/Casa)</h4>
+                    <pre>define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASS', '');                  // Password VUOTA
+define('DB_NAME', 'esercizi_php');</pre>
+                </div>
+                
+                <div class="card">
+                    <h4>🌐 Altervista</h4>
+                    <pre>define('DB_HOST', 'localhost');
+define('DB_USER', 'miosito');           // Tuo username
+define('DB_PASS', 'miapassword');       // Tua password
+define('DB_NAME', 'my_miosito');        // my_ + username</pre>
+                </div>
+                
+                <div class="card">
+                    <h4>🐧 Linux (LAMP)</h4>
+                    <pre>define('DB_HOST', 'localhost');
+define('DB_USER', 'utente_db');
+define('DB_PASS', 'password_sicura');
+define('DB_NAME', 'esercizi_php');</pre>
+                </div>
+                
+                <h3>Sicurezza</h3>
+                <div class="alert alert-warning">
+                    <strong>⚠️ IMPORTANTE:</strong>
+                    <ul>
+                        <li>Il file <code>db_config.php</code> contiene credenziali sensibili</li>
+                        <li>Non condividerlo pubblicamente</li>
+                        <li>Non committarlo su repository pubblici con credenziali reali</li>
+                        <li>Usa password sicure in produzione</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Troubleshooting Tab -->
+            <div id="troubleshooting" class="tab-content">
+                <h2>Problemi Comuni e Soluzioni</h2>
+                
+                <div class="card">
+                    <h3>❌ Apache non si avvia (XAMPP)</h3>
+                    <p><strong>Causa:</strong> Porta 80 occupata (Skype, IIS, altri programmi)</p>
+                    <p><strong>Soluzione:</strong></p>
+                    <ol>
+                        <li>Chiudi Skype o programmi che usano porta 80</li>
+                        <li>OPPURE cambia porta Apache:
+                            <ul>
+                                <li>XAMPP Control Panel → Config → httpd.conf</li>
+                                <li>Cerca <code>Listen 80</code> → cambia in <code>Listen 8080</code></li>
+                                <li>Cerca <code>ServerName localhost:80</code> → cambia in <code>ServerName localhost:8080</code></li>
+                                <li>Salva e riavvia Apache</li>
+                                <li>Usa <code>http://localhost:8080/...</code></li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+                
+                <div class="card">
+                    <h3>❌ MySQL non si avvia (XAMPP)</h3>
+                    <p><strong>Causa:</strong> Porta 3306 occupata o altro MySQL installato</p>
+                    <p><strong>Soluzione:</strong></p>
+                    <ol>
+                        <li>Apri Gestione Attività (Ctrl+Shift+Esc)</li>
+                        <li>Cerca processi "mysqld" o "MySQL" e terminali</li>
+                        <li>Riavvia XAMPP</li>
+                    </ol>
+                </div>
+                
+                <div class="card">
+                    <h3>❌ Errore: Access denied for user</h3>
+                    <p><strong>Causa:</strong> Credenziali database errate</p>
+                    <p><strong>Soluzione:</strong></p>
+                    <ol>
+                        <li>Verifica <code>config/db_config.php</code></li>
+                        <li>Per XAMPP: user=<code>root</code>, password=<code>''</code> (vuota)</li>
+                        <li>Per Altervista: user=<code>tuousername</code>, database=<code>my_tuousername</code></li>
+                        <li>Verifica che MySQL sia avviato</li>
+                    </ol>
+                </div>
+                
+                <div class="card">
+                    <h3>❌ Errore: Unknown database</h3>
+                    <p><strong>Causa:</strong> Database non creato</p>
+                    <p><strong>Soluzione:</strong></p>
+                    <ol>
+                        <li>Vai su phpMyAdmin</li>
+                        <li>Crea database <code>esercizi_php</code></li>
+                        <li>Importa <code>database/schema.sql</code></li>
+                    </ol>
+                </div>
+                
+                <div class="card">
+                    <h3>❌ Pagina bianca / Errore 500</h3>
+                    <p><strong>Causa:</strong> Errore PHP non visualizzato</p>
+                    <p><strong>Soluzione:</strong></p>
+                    <ol>
+                        <li>Controlla log: <code>C:\xampp\apache\logs\error.log</code></li>
+                        <li>Oppure abilita errori PHP temporaneamente:
+                            <pre>&lt;?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+?&gt;</pre>
+                        </li>
+                    </ol>
+                </div>
+                
+                <div class="card">
+                    <h3>❌ Caratteri strani (à, è, ì, ò, ù)</h3>
+                    <p><strong>Causa:</strong> Problemi encoding</p>
+                    <p><strong>Soluzione:</strong></p>
+                    <ol>
+                        <li>Verifica che i file PHP siano UTF-8 (VSCode, in basso a destra)</li>
+                        <li>Verifica database utf8mb4 in phpMyAdmin</li>
+                        <li>Aggiungi all'inizio delle pagine HTML:
+                            <pre>&lt;meta charset="UTF-8"&gt;</pre>
+                        </li>
+                    </ol>
+                </div>
+                
+                <div class="card">
+                    <h3>❌ Upload FTP fallito (Altervista)</h3>
+                    <p><strong>Causa:</strong> Credenziali FTP errate o firewall</p>
+                    <p><strong>Soluzione:</strong></p>
+                    <ol>
+                        <li>Verifica host: <code>ftp.tuousername.altervista.org</code></li>
+                        <li>Verifica username e password FTP</li>
+                        <li>Prova modalità passiva FTP</li>
+                        <li>Controlla firewall Windows</li>
+                    </ol>
+                </div>
+                
+                <h3>🆘 Serve Aiuto?</h3>
+                <div class="alert alert-info">
+                    <p>Se il problema persiste:</p>
+                    <ol>
+                        <li>Controlla i log di errore</li>
+                        <li>Cerca su Google il messaggio di errore specifico</li>
+                        <li>Chiedi al docente o ai compagni</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p><strong>Esercizi PHP/MySQLi</strong> - Repository didattico</p>
+            <p>Per tornare agli esercizi: <a href="../">Vai alla home</a></p>
+        </footer>
+    </div>
+    
+    <script>
+        function openTab(tabName, event) {
+            // Nascondi tutti i tab content
+            var tabContents = document.getElementsByClassName('tab-content');
+            for (var i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+            
+            // Rimuovi active da tutti i bottoni
+            var tabButtons = document.getElementsByClassName('tab-button');
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+            
+            // Mostra il tab selezionato
+            document.getElementById(tabName).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>

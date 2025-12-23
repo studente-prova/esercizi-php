@@ -1,29 +1,68 @@
 <?php
 /**
- * Caricatore configurazione database
+ * ============================================================================
+ * CONFIGURAZIONE DATABASE - Esercizi PHP
+ * ============================================================================
  * 
- * Questo file cerca prima db_config_local.php (con credenziali reali)
- * e se non esiste, carica db_config.template.php (per scopi didattici)
+ * ISTRUZIONI RAPIDE:
+ * 
+ * 1. XAMPP su Windows (laboratorio/casa):
+ *    - DB_USER: 'root'
+ *    - DB_PASS: '' (vuoto)
+ *    - DB_NAME: 'esercizi_php'
+ * 
+ * 2. Altervista:
+ *    - DB_USER: 'tuousername' (il tuo username Altervista)
+ *    - DB_PASS: 'tuapassword' (la tua password database)
+ *    - DB_NAME: 'my_tuousername' (my_ seguito dal tuo username)
+ * 
+ * 3. Linux/Mac (LAMP/MAMP):
+ *    - Configura secondo la tua installazione
+ * 
+ * IMPORTANTE: Questo file contiene credenziali. NON condividerlo pubblicamente!
+ * ============================================================================
  */
 
-// Percorso base della configurazione
-$config_dir = __DIR__;
+// ===== CONFIGURAZIONE DATABASE =====
+// Modifica SOLO questi valori con le tue credenziali
 
-// Prova a caricare la configurazione locale (preferita)
-if (file_exists($config_dir . '/db_config_local.php')) {
-    require_once $config_dir . '/db_config_local.php';
-} else {
-    // Fallback al template per scopi didattici/test
-    require_once $config_dir . '/db_config.template.php';
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');              // Cambia con il tuo username
+define('DB_PASS', '');                  // Cambia con la tua password
+define('DB_NAME', 'esercizi_php');      // Cambia con il nome del tuo database
+define('DB_CHARSET', 'utf8mb4');
+
+// ===== FUNZIONI DATABASE (NON MODIFICARE) =====
+
+/**
+ * Funzione per creare connessione al database
+ * 
+ * @return mysqli|false Oggetto mysqli o false in caso di errore
+ */
+function connetti_database() {
+    // Crea connessione
+    $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
     
-    // Mostra avviso se si sta usando il template
-    if (!defined('SUPPRESS_CONFIG_WARNING')) {
-        trigger_error(
-            'AVVISO: Si sta usando db_config.template.php. ' .
-            'Per l\'uso in produzione, copia questo file in db_config_local.php ' .
-            'e configura le tue credenziali database.',
-            E_USER_NOTICE
-        );
+    // Verifica connessione
+    if (!$conn) {
+        die("Errore di connessione: " . mysqli_connect_error());
+    }
+    
+    // Imposta charset
+    mysqli_set_charset($conn, DB_CHARSET);
+    
+    return $conn;
+}
+
+/**
+ * Funzione per chiudere connessione al database
+ * 
+ * @param mysqli $conn Connessione da chiudere
+ * @return void
+ */
+function chiudi_database($conn) {
+    if ($conn) {
+        mysqli_close($conn);
     }
 }
 ?>

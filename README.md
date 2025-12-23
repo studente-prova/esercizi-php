@@ -2,130 +2,87 @@
 
 Repository di esercizi giornalieri di PHP con MySQLi procedurale, organizzati per difficoltà crescente.
 
+## 🚀 Setup Rapido
+
+### Per XAMPP Windows (Laboratorio/Casa)
+
+1. **Installa XAMPP** e copia il progetto in `C:\xampp\htdocs\esercizi-php\`
+2. **Avvia Apache e MySQL** dal XAMPP Control Panel
+3. **Crea database** `esercizi_php` su phpMyAdmin (`http://localhost/phpmyadmin`)
+4. **Importa schema** dal file `database/schema.sql`
+5. **Configura** `config/db_config.php`:
+   ```php
+   define('DB_USER', 'root');
+   define('DB_PASS', '');  // vuoto per XAMPP
+   ```
+6. **Testa**: Apri `http://localhost/esercizi-php/`
+
+### Per Altervista (Online)
+
+1. **Crea database** dal pannello Altervista
+2. **Configura** `config/db_config.php`:
+   ```php
+   define('DB_USER', 'tuousername');
+   define('DB_PASS', 'tuapassword');
+   define('DB_NAME', 'my_tuousername');  // my_ + username
+   ```
+3. **Carica file via FTP** con VSCode + estensione FTP
+4. **Testa**: Apri `http://tuousername.altervista.org/esercizi-php/`
+
+## 📖 Documentazione Completa
+
+**👉 [Apri la Guida Completa (HTML)](docs/index.html) 👈**
+
+La documentazione interattiva include:
+- Setup dettagliato per XAMPP Windows
+- Setup per Altervista con FTP
+- Configurazione database
+- Risoluzione problemi comuni
+
 ## 📁 Struttura del Repository
 
 ```
 esercizi-php/
-├── giorno-01/          # Primo giorno - Esercizi base
-│   ├── esercizio-01/
-│   ├── esercizio-02/
-│   ├── esercizio-03/
-│   └── README.md
-├── giorno-02/          # Secondo giorno - Difficoltà crescente
-│   ├── esercizio-01/
-│   ├── esercizio-02/
-│   └── README.md
-├── config/             # File di configurazione
-│   └── db_config.template.php
-├── database/           # Script SQL e schema
-│   └── schema.sql
-├── docs/               # Documentazione aggiuntiva
-│   ├── setup.md
-│   └── best-practices.md
-└── utils/              # Utility e funzioni comuni
-    └── functions.php
+├── index.html          # Home con link alla documentazione
+├── docs/
+│   └── index.html      # Guida setup interattiva
+├── config/
+│   └── db_config.php   # Configurazione database (UNICO FILE)
+├── database/
+│   └── schema.sql      # Schema database
+├── giorno-01/          # Esercizi giorno 1
+├── giorno-02/          # Esercizi giorno 2
+└── utils/              # Utility comuni
 ```
 
-## 🚀 Setup Iniziale
+## ⚙️ Configurazione Database
 
-### Prerequisiti
-- PHP 7.4 o superiore
-- MySQL/MariaDB 5.7 o superiore
-- Server web (Apache/Nginx) o PHP built-in server
+**File unico**: `config/db_config.php`
 
-### Configurazione Database
-
-1. Crea un database MySQL:
-```sql
-CREATE DATABASE esercizi_php CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-```
-
-2. Copia il file di configurazione template:
-```bash
-cp config/db_config.template.php config/db_config_local.php
-```
-
-**Nota**: Gli esercizi usano `config/db_config.php` che carica automaticamente 
-`db_config_local.php` se esiste, altrimenti usa il template per scopi didattici.
-
-3. Modifica `config/db_config_local.php` con le tue credenziali:
+Modifica le prime righe con le tue credenziali:
 ```php
-<?php
 define('DB_HOST', 'localhost');
-define('DB_USER', 'tuo_username');
-define('DB_PASS', 'tua_password');
-define('DB_NAME', 'esercizi_php');
-?>
+define('DB_USER', 'root');              // tuo username
+define('DB_PASS', '');                  // tua password
+define('DB_NAME', 'esercizi_php');      // nome database
 ```
 
-4. Importa lo schema base:
-```bash
-mysql -u tuo_username -p esercizi_php < database/schema.sql
-```
+## 📚 Come Usare gli Esercizi
 
-## 📚 Come Utilizzare gli Esercizi
+1. Configura il database (vedi sopra)
+2. Apri `http://localhost/esercizi-php/` nel browser
+3. Vai agli esercizi:
+   - `giorno-01/esercizio-01/` - Test connessione
+   - `giorno-01/esercizio-02/` - Query base
+   - `giorno-02/esercizio-01/` - CRUD operations
 
-### Struttura di Ogni Esercizio
+## 🔧 Problemi?
 
-Ogni esercizio contiene:
-- `README.md` - Descrizione dell'esercizio e requisiti
-- `index.php` - File principale dell'esercizio
-- `soluzione.php` (opzionale) - Soluzione proposta
-- Altri file necessari per l'esercizio
-
-### Eseguire un Esercizio
-
-1. Naviga nella cartella dell'esercizio
-2. Avvia il server PHP:
-```bash
-cd giorno-01/esercizio-01
-php -S localhost:8000
-```
-3. Apri il browser a `http://localhost:8000`
-
-## 📖 Progressione degli Esercizi
-
-### Giorno 1: Fondamenti PHP e MySQLi
-- Connessione al database
-- Query SELECT base
-- Visualizzazione dati in HTML
-
-### Giorno 2: CRUD Operations
-- INSERT: Inserimento dati
-- UPDATE: Modifica dati
-- DELETE: Cancellazione dati
-
-### Giorno 3: Form e Validazione
-- Gestione form POST/GET
-- Validazione input
-- Prepared statements
-
-### Giorno 4: Operazioni Avanzate
-- JOIN tra tabelle
-- Ricerca e filtri
-- Paginazione
-
-### Giorno 5: Sessioni e Autenticazione
-- Gestione sessioni
-- Login/Logout
-- Sistema di autenticazione base
-
-## 🎯 Best Practices
-
-1. **Sicurezza**
-   - Usa sempre prepared statements
-   - Valida e sanitizza input utente
-   - Non esporre mai credenziali nel codice
-
-2. **Codice Pulito**
-   - Indentazione consistente
-   - Commenti in italiano
-   - Nomi variabili descrittivi
-
-3. **Gestione Errori**
-   - Controlla sempre il risultato delle query
-   - Gestisci gli errori appropriatamente
-   - Usa `mysqli_error()` per il debug
+Consulta la [Guida Troubleshooting](docs/index.html#troubleshooting) per risolvere i problemi più comuni:
+- Apache/MySQL non si avvia
+- Errori di connessione database
+- Caratteri strani (encoding)
+- Problemi FTP con Altervista
 
 ## 📝 Convenzioni
 
@@ -133,13 +90,13 @@ php -S localhost:8000
 - **Encoding**: UTF-8
 - **Indentazione**: 4 spazi
 - **Nomi file**: snake_case (es. `db_config.php`)
-- **Nomi variabili**: camelCase o snake_case
 
 ## 🔗 Risorse Utili
 
 - [PHP Manual](https://www.php.net/manual/it/)
 - [MySQLi Documentation](https://www.php.net/manual/it/book.mysqli.php)
-- [SQL Tutorial](https://www.w3schools.com/sql/)
+- [XAMPP Download](https://www.apachefriends.org/it/index.html)
+- [Altervista](https://it.altervista.org/)
 
 ## 📄 Licenza
 
