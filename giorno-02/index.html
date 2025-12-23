@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giorno 2 - Operazioni CRUD</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        
+        .objectives {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .objectives h2 {
+            color: #667eea;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+        
+        .objectives ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .objectives li {
+            padding: 8px 0;
+            color: #555;
+        }
+        
+        .objectives li::before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .exercises {
+            margin-bottom: 30px;
+        }
+        
+        .exercise-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .exercise-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+            border-color: #667eea;
+        }
+        
+        .exercise-card h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+        
+        .difficulty {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .difficulty.easy {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .difficulty.medium {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .difficulty.hard {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .exercise-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .exercise-goals {
+            background: #f0f4ff;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+        
+        .exercise-goals strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .exercise-goals ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .exercise-goals li {
+            padding: 4px 0;
+            color: #555;
+            font-size: 0.95em;
+        }
+        
+        .exercise-goals li::before {
+            content: "→ ";
+            color: #667eea;
+            margin-right: 5px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+        }
+        
+        .tips {
+            background: #fff8e1;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #ffa726;
+        }
+        
+        .tips h2 {
+            color: #f57c00;
+            font-size: 1.2em;
+            margin-bottom: 12px;
+        }
+        
+        .tips ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .tips li {
+            padding: 6px 0;
+            color: #555;
+            font-size: 0.95em;
+        }
+        
+        .tips li::before {
+            content: "💡 ";
+            margin-right: 8px;
+        }
+        
+        .security {
+            background: #ffebee;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #e53935;
+        }
+        
+        .security h2 {
+            color: #c62828;
+            font-size: 1.2em;
+            margin-bottom: 12px;
+        }
+        
+        .security ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .security li {
+            padding: 6px 0;
+            color: #555;
+            font-size: 0.95em;
+        }
+        
+        .security li::before {
+            content: "🔒 ";
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Giorno 2</h1>
+            <p class="subtitle">Operazioni CRUD (Create, Read, Update, Delete)</p>
+        </header>
+        
+        <div class="objectives">
+            <h2>🎯 Obiettivi del Giorno</h2>
+            <ul>
+                <li>Inserire nuovi record nel database (CREATE)</li>
+                <li>Leggere e visualizzare dati (READ - già visto ieri)</li>
+                <li>Modificare record esistenti (UPDATE)</li>
+                <li>Eliminare record dal database (DELETE)</li>
+                <li>Gestire form HTML con PHP</li>
+                <li>Validare input utente</li>
+            </ul>
+        </div>
+        
+        <div style="background: #e3f2fd; padding: 20px; border-radius: 8px; margin-bottom: 30px; border-left: 4px solid #2196f3;">
+            <h2 style="color: #1565c0; font-size: 1.2em; margin-bottom: 12px;">📖 Come Procedere</h2>
+            <ul style="list-style: none; padding-left: 0;">
+                <li style="padding: 6px 0; color: #555; font-size: 0.95em;"><span style="margin-right: 8px;">1️⃣</span> <strong>Leggi le istruzioni</strong>: Clicca su "📖 Istruzioni" per capire i requisiti dell'esercizio</li>
+                <li style="padding: 6px 0; color: #555; font-size: 0.95em;"><span style="margin-right: 8px;">2️⃣</span> <strong>Crea il file PHP</strong>: Nella cartella dell'esercizio, crea <code>index.php</code></li>
+                <li style="padding: 6px 0; color: #555; font-size: 0.95em;"><span style="margin-right: 8px;">3️⃣</span> <strong>Scrivi il codice</strong>: Implementa la soluzione seguendo le indicazioni del README</li>
+                <li style="padding: 6px 0; color: #555; font-size: 0.95em;"><span style="margin-right: 8px;">4️⃣</span> <strong>Testa</strong>: Clicca su "Inizia Esercizio →" per testare la tua soluzione</li>
+                <li style="padding: 6px 0; color: #555; font-size: 0.95em;"><span style="margin-right: 8px;">5️⃣</span> <strong>Debug</strong>: Se ci sono errori, leggi i messaggi e correggi il codice</li>
+            </ul>
+        </div>
+        
+        <div class="exercises">
+            <h2 style="color: #333; margin-bottom: 25px; font-size: 1.8em;">📋 Esercizi Disponibili</h2>
+            
+            <!-- Esercizio 1 -->
+            <div class="exercise-card">
+                <h3>Esercizio 1: Inserisci Nuovo Studente</h3>
+                <span class="difficulty medium">⭐⭐ Medio</span>
+                
+                <p class="exercise-description">
+                    Crea un form per inserire un nuovo studente nel database e gestisci l'inserimento con validazione completa.
+                </p>
+                
+                <div class="exercise-goals">
+                    <strong>Obiettivi:</strong>
+                    <ul>
+                        <li>Creare form HTML con metodo POST</li>
+                        <li>Validare tutti i campi obbligatori</li>
+                        <li>Eseguire query INSERT</li>
+                        <li>Gestire errori e conferme</li>
+                        <li>Sanitizzare input utente</li>
+                    </ul>
+                </div>
+                
+                <a href="esercizio-01/" class="btn btn-primary">Inizia Esercizio →</a>
+                <a href="esercizio-01/README.md" class="btn btn-secondary" style="margin-left: 10px;">📖 Istruzioni</a>
+            </div>
+            
+            <!-- Esercizio 2 -->
+            <div class="exercise-card">
+                <h3>Esercizio 2: Modifica ed Elimina Studente</h3>
+                <span class="difficulty hard">⭐⭐⭐ Difficile</span>
+                
+                <p class="exercise-description">
+                    Crea un'interfaccia per modificare i dati di uno studente esistente ed eliminare studenti dal database.
+                </p>
+                
+                <div class="exercise-goals">
+                    <strong>Obiettivi:</strong>
+                    <ul>
+                        <li>Form precompilato con dati attuali</li>
+                        <li>Eseguire query UPDATE</li>
+                        <li>Implementare DELETE con conferma</li>
+                        <li>Usare prepared statements</li>
+                        <li>Gestire redirect dopo operazioni</li>
+                    </ul>
+                </div>
+                
+                <a href="esercizio-02/" class="btn btn-primary">Inizia Esercizio →</a>
+                <a href="esercizio-02/README.md" class="btn btn-secondary" style="margin-left: 10px;">📖 Istruzioni</a>
+            </div>
+        </div>
+        
+        <div class="tips">
+            <h2>💡 Suggerimenti</h2>
+            <ul>
+                <li><strong>Validazione</strong>: Controlla SEMPRE i dati prima di inserirli nel database</li>
+                <li><strong>Prepared Statements</strong>: Usa prepared statements per prevenire SQL injection</li>
+                <li><strong>Feedback utente</strong>: Mostra sempre messaggi di conferma o errore</li>
+                <li><strong>Redirect</strong>: Usa <code>header('Location: ...')</code> dopo operazioni di modifica</li>
+                <li><strong>Transazioni</strong>: Per operazioni multiple, considera l'uso di transazioni</li>
+            </ul>
+        </div>
+        
+        <div class="security">
+            <h2>🔒 Sicurezza Importante</h2>
+            <ul>
+                <li>SEMPRE validare e sanitizzare input utente</li>
+                <li>Usare prepared statements per tutte le query con parametri</li>
+                <li>Non fidarsi mai dei dati ricevuti dall'utente</li>
+                <li>Gestire correttamente gli errori senza esporre dettagli sensibili</li>
+                <li>Implementare controlli di autorizzazione appropriate</li>
+            </ul>
+        </div>
+        
+        <div class="navigation">
+            <a href="../giorno-01/" class="btn btn-secondary">← Giorno 1</a>
+            <a href="../" class="btn btn-secondary">🏠 Home</a>
+            <span style="color: #999;">Fine esercizi disponibili</span>
+        </div>
+    </div>
+</body>
+</html>

@@ -114,10 +114,34 @@
             font-size: 24px;
             margin-right: 8px;
         }
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        .breadcrumb span {
+            margin: 0 8px;
+            color: #999;
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="breadcrumb">
+            🏠 <a href="../../">Home</a> <span>›</span> <a href="../">Giorno 1</a> <span>›</span> Esercizio 3
+        </div>
+        
         <a href="../esercizio-02/index.php" class="back-link">← Torna alla lista studenti</a>
         
         <h1>🔍 Dettagli Studente</h1>
