@@ -102,6 +102,12 @@ h1 {
     margin-bottom: 30px;
 }
 
+.exercises h2 {
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+}
+
 .exercise-card {
     background: white;
     border: 2px solid #e0e0e0;
@@ -380,4 +386,34 @@ h1 {
     font-size: 80px;
     text-align: center;
     margin-bottom: 20px;
+}
+
+/* How to proceed box - special style for giorno-02 */
+.how-to-proceed {
+    background: #e3f2fd;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    border-left: 4px solid #2196f3;
+}
+
+.how-to-proceed h2 {
+    color: #1565c0;
+    font-size: 1.2em;
+    margin-bottom: 12px;
+}
+
+.how-to-proceed ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.how-to-proceed li {
+    padding: 6px 0;
+    color: #555;
+    font-size: 0.95em;
+}
+
+.how-to-proceed li span {
+    margin-right: 8px;
 }

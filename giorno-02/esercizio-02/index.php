@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Esercizio 2 - Modifica ed Elimina Studente</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="breadcrumb">
+            🏠 <a href="../../">Home</a> <span>›</span> <a href="../">Giorno 2</a> <span>›</span> Esercizio 2
+        </div>
+        
+        <div class="icon">👷‍♀️</div>
+        <h1>🎯 Esercizio 2: Modifica ed Elimina Studente</h1>
+        
+        <div class="instruction-box">
+            <h2>📝 Questo Esercizio È da Completare</h2>
+            <p>Questo è un esercizio avanzato che richiede l'implementazione di operazioni UPDATE e DELETE.</p>
+            
+            <p><strong>Per completare questo esercizio, segui questi passaggi:</strong></p>
             <ol>
                 <li>Leggi attentamente il file <code>README.md</code> in questa cartella per capire i requisiti</li>
                 <li>Questo file (<code>index.php</code>) è solo un placeholder - sostituiscilo con la tua implementazione</li>
